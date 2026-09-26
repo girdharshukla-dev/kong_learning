@@ -17,4 +17,11 @@ services:
           - ~/users/(?<user_id>[0-9]+)$
         strip_path: false
 
-
+plugins:
+  - name: rate-limiting
+    route: test-routes
+    config:
+      hour: 10
+      policy: local
+      limit_by: ip
+      
