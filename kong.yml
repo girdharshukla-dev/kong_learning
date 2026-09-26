@@ -1,0 +1,20 @@
+_format_version: "3.0"
+
+services:
+  - name: "starlette_backend"
+    url: "http://host.docker.internal:8080"
+    routes:
+      - name: "test-routes"
+        paths:
+          - /hello
+          - /ping
+          - /slow
+        strip_path: false
+
+      - name: "users-routes"
+        paths:
+          - /users
+          - ~/users/(?<user_id>[0-9]+)$
+        strip_path: false
+
+
