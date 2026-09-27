@@ -17,6 +17,13 @@ services:
           - ~/users/(?<user_id>[0-9]+)$
         strip_path: false
 
+consumers:
+  - custom_id: example_consumer_id
+    username: example_consumer
+    keyauth_credentials:
+      - key: abc123
+
+
 plugins:
   - name: rate-limiting
     route: test-routes
@@ -25,3 +32,8 @@ plugins:
       policy: local
       limit_by: ip
       
+  - name: key-auth
+    route: test-routes
+    config:
+      key_names:
+      - api_key
